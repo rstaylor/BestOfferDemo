@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+    
+        "Dockerfile*": "dockerfile",
+      },
+    "objectscript.conn.active": true,
+    "objectscript.conn.version": 3,
+    "objectscript.conn.ns": "BESTOFFER",
+    "objectscript.conn.username": "_SYSTEM",
+    "objectscript.conn.password": "SYS",
+    "objectscript.conn.port": 62773, 
+    "objectscript.export.addCategory": true
+
+}

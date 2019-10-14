@@ -1,0 +1,18 @@
+version: '2.4'
+services:
+  iris:
+    build: .
+    restart: always
+    ports:
+      - 61773:51773
+      - 62773:52773
+      - 63773:53773
+    volumes:
+      # - ~/iris.key:/usr/irissys/mgr/iris.key
+      - ./:/iris/app
+networks:
+  default:
+   ipam:
+      driver: default
+      config:
+      -  subnet: 192.168.250.0/24
