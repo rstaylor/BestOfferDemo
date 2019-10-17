@@ -17,6 +17,7 @@ XData MyInstall [ XMLNamespace = INSTALLER ]
     </Configuration>
 
     <Import File="${SOURCESPATH}" Recurse="1"/>
+    <Invoke Class="BestOffer.Util.Utils" Method="Build" CheckStatus="1" />
   </Namespace>
 
 </Manifest>
