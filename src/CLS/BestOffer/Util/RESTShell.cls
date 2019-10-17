@@ -1,4 +1,4 @@
-Class BestOffer.Util.RESTShell Extends %RegisteredObject
+Class BestOffer.Util.RESTShell Extends %CSP.REST
 {
 
 /// Fake REST service, hadrdcoded to send in ItemID=1
