@@ -15,9 +15,13 @@ XData MyInstall [ XMLNamespace = INSTALLER ]
       <Database Name="${DBNAME}-CODE" Dir="${APPPATH}${DBNAME}-CODE" Create="yes" Resource="${RESOURCE}"/>
       <Database Name="${DBNAME}-DATA" Dir="${APPPATH}${DBNAME}-DATA" Create="yes" Resource="${RESOURCE}"/>
     </Configuration>
-
+    <Production name="BestOffer.Production" AutoStart="1">
+    </Production>
     <Import File="${SOURCESPATH}" Recurse="1"/>
     <Invoke Class="BestOffer.Util.Utils" Method="Build" CheckStatus="1" />
+    <Invoke Class="Ens.Director" Method="SetAutoStart" CheckStatus="0">
+      <Arg Value="BestOffer.Production" />
+    </Invoke>
   </Namespace>
 
 </Manifest>

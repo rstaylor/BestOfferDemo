@@ -12,10 +12,10 @@ Parameter SellerName = "Michael";
 Parameter X12Name = "Roberto";
 
 /// Email address of email account holder and of Buyer/Seller
-Parameter EmailAddress = "andre.p.cerri@xxxxxxmail.com";
+Parameter EmailAddress = "richtaylor0420@gmail.com";
 
 /// Email password of email account holder 
-Parameter EmailPassword = "MyPassword";
+Parameter EmailPassword = "bharcyiviaqcoqdb";
 
 /// Gmail use smtp.gmail.com
 Parameter EmailServer = "smtp.gmail.com";
@@ -41,6 +41,8 @@ ClassMethod Build() As %Status
 	set tSC=..BuildData()
 	set tSC=..FixProduction()
 	Do EnableDeepSee^%SYS.cspServer(0)      //for all namespaces
+	#; do ##class(Ens.Director).SetAutoStart("BestOffer.Production")
+	#; Do ##class(Ens.Director).StartProduction("BestOffer.Production")
 	quit tSC
 }
 
