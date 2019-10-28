@@ -12,7 +12,6 @@ COPY  ./Installer.cls ./
 COPY  ./src ./src
 #COPY --chown=irisowner ./src/dfi ./src/dfi
 
-
 RUN iris start $ISC_PACKAGE_INSTANCENAME quietly && \
     /bin/echo -e \
             "zn \"%SYS\"\n" \

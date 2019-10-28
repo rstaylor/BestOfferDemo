@@ -1,6 +1,21 @@
 Class BestOffer.Util.RESTShell Extends %CSP.REST
 {
 
+XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
+{
+<Routes>
+		<!--
+		<Route Url="/class/:namespace/:classname" Method="GET" Call="GetClass" Cors="true"/>
+		<Map Prefix="/docserver" Forward="%Api.v1.DocServer"/>
+		-->
+	</Routes>
+}
+
+ClassMethod SendRequest() As %Status
+{
+	#dim tSC as %Status
+}
+
 /// Fake REST service, hadrdcoded to send in ItemID=1
 /// This would of course be the OID of the new Item that gets saved as part of the 
 /// incoming REST service filing the JSON payload into the database 
