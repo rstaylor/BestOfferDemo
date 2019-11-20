@@ -33,14 +33,12 @@ XData MyInstall [ XMLNamespace = INSTALLER ]
       <Database Name="${DBNAME}-CODE" Dir="${APPPATH}${DBNAME}-CODE" Create="yes" Resource="${RESOURCE}"/>
       <Database Name="${DBNAME}-DATA" Dir="${APPPATH}${DBNAME}-DATA" Create="yes" Resource="${RESOURCE}"/>
     </Configuration>
-    <Production name="BestOffer.Production" AutoStart="1">
-      <!-- <Setting Item="Notify Buyer" Target="Adapter" Setting="From" Value="${EmailAddress}" /> -->
-    </Production>
+
     <!--<ClassMapping Package="App" From="USER" /> -->
     <Import File="${SOURCESPATH}" Recurse="1"/>
-    <!--
-      <Invoke Class="App.Installer" Method="CreateWebApp" CheckStatus="1" />
-    -->
+
+    <Production name="BestOffer.Production" AutoStart="1"/>
+
     <Invoke Class="BestOffer.Util.Utils" Method="FixProduction" CheckStatus="1" />
     <Invoke Class="BestOffer.Util.Utils" Method="BuildWFUsers" CheckStatus="1" />
     <Invoke Class="BestOffer.Util.Utils" Method="BuildData" CheckStatus="1" />
@@ -68,7 +66,7 @@ ClassMethod setup(ByRef pVars, pLogLevel As %Integer = 3, pInstaller As %Install
 /// had to create a method to build the web application as the
 /// Manifest tag <CSPApplication> does not provide a way to supply
 /// a dispatch class for a RESTful end point.
-ClassMethod CreateWebApp() as %Status
+ClassMethod CreateWebApp() As %Status
 {
   new $Namespace
   set $Namespace = "%SYS"
