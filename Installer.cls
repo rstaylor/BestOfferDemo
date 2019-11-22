@@ -16,12 +16,12 @@ XData MyInstall [ XMLNamespace = INSTALLER ]
   <Default Name="X12Name" Value="Roberto" />
   <Default Name="UserPwd" Value="xxx" />
   <Default Name="EmailServer" Value="smtp.gmail.com" />
-  <Default Name="SSLConfig" Value="Email*" />
-  <Default Name="EmailPort" Value="587" />
+  <Default Name="SSLConfig" Value="Email" />
+  <Default Name="EmailPort" Value="465" />
   <Default Name="Credentials" Value="Email" />
   <!-- Update email credentials for your needs -->
   <Default Name="EmailAddress" Value="richtaylor0420@gmail.com" />
-  <Default Name="EmailPassword" Value="bharcyiviaqcoqdb" />
+  <Default Name="EmailPassword" Value="imtuhdelmgewcpwi" />
 
   <!-- Define users -->
   <User Username="${BuyerName}" PasswordVar="UserPwd" Roles="%All" />
@@ -52,7 +52,9 @@ XData MyInstall [ XMLNamespace = INSTALLER ]
       </Invoke>
   </Namespace>
   <Namespace Name="USER" Create="no">
-      <Invoke Class="App.Installer" Method="CreateWebApp" CheckStatus="1" />
+      <Invoke Class="App.Installer" Method="CreateWebApp" CheckStatus="1">
+        <Arg Value="${NAMESPACE}" />
+      </Invoke>
   </Namespace>
  
 </Manifest>
@@ -66,7 +68,8 @@ ClassMethod setup(ByRef pVars, pLogLevel As %Integer = 3, pInstaller As %Install
 /// had to create a method to build the web application as the
 /// Manifest tag <CSPApplication> does not provide a way to supply
 /// a dispatch class for a RESTful end point.
-ClassMethod CreateWebApp() As %Status
+/// This will also update the default namespace to have 
+ClassMethod CreateWebApp(DefaultNamespace As %String) As %Status
 {
   new $Namespace
   set $Namespace = "%SYS"
@@ -79,6 +82,25 @@ ClassMethod CreateWebApp() As %Status
   set status = ##class(Security.Applications).Create(webName, .webProperties)
   write:'status ##class(%System.Status).DisplayError(status)
   write "Web application "_webName_" was created!",!
+
+  // Also up date the Analytics flag of the default namespace.  This setting
+  // is not available in the Installer Manifest <namespace> tag
+  set webAppName = "/csp/"_$ZConvert(DefaultNamespace,"L")
+  write "Updating Analytics flag in "_webAppName_" web application",!
+  set webApp = ##class(Security.Applications).%OpenId(webAppName,,.tSC)
+  if $$$ISOK(tSC) {
+    set webApp.DeepSeeEnabled = 1
+    set tSC = webApp.%Save()
+    if $$$ISERR(tSC) {
+      write "*** error in updating Web Application ***"
+      do $System.Status.DisplayError(tSC)
+      write !,!,"Please update the web application manually",!
+    }
+  } else {
+    write "*** error in updating Web Application ***"
+    do $System.Status.DisplayError(tSC)
+    write !,!,"Please update the web application manually",!
+  }
 
   quit status
 }

@@ -9,6 +9,7 @@
     "objectscript.conn.username": "_SYSTEM",
     "objectscript.conn.password": "SYS",
     "objectscript.conn.port": 62773, 
-    "objectscript.export.addCategory": true
+    "objectscript.export.addCategory": true,
+    "workbench.editor.enablePreview": false
 
 }

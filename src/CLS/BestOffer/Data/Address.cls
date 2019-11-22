@@ -1,4 +1,4 @@
-Class BestOffer.Data.Address Extends (%SerialObject, %Populate, %XML.Adaptor)
+Class BestOffer.Data.Address Extends (%SerialObject, %Populate, %XML.Adaptor, %JSON.Adaptor)
 {
 
 Property Street As %String;

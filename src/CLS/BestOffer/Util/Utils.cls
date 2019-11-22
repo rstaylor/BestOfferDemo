@@ -15,20 +15,20 @@ Parameter X12Name = "Roberto";
 Parameter EmailAddress = "richtaylor0420@gmail.com";
 
 /// Email password of email account holder 
-Parameter EmailPassword = "bharcyiviaqcoqdb";
+Parameter EmailPassword = "imtuhdelmgewcpwi";
 
 /// Gmail use smtp.gmail.com
 Parameter EmailServer = "smtp.gmail.com";
 
 /// Gmail use 587
-Parameter EmailPort = 587;
+Parameter EmailPort = 465;
 
 /// SSL/TLS config name
 Parameter SSLConfig = "Email";
 
 /// Set this to "*" if Ensemble needs to switch to SSL/TLS on the same port, otherwise leave set to null
 /// Gmail needs this
-Parameter SSLSwitch = "*";
+Parameter SSLSwitch;
 
 /// Name for Ensemble Credentials used for Email accout authentication
 Parameter Credentials = "Email";
@@ -100,7 +100,7 @@ ClassMethod BuildEnsembleUsers() As %Status
 	quit tSC
 }
 
-/// Run this once per namespace
+/// Run this once per namespacedo
 /// Creates email credentials and workflow users/roles
 ClassMethod BuildWFUsers() As %Status
 {
@@ -139,7 +139,7 @@ ClassMethod BuildData() As %Status
 	
 	///Populate the 3 main classes with 10 objects each
 	write ##class(BestOffer.Data.Seller).Populate(10),!
-	write ##class(BestOffer.Data.Item).Populate(10),!
+	#; write ##class(BestOffer.Data.Item).Populate(10),!
 	write ##class(BestOffer.Data.Buyer).Populate(10),!
 	
 	//Force Buyer ID=1 to be Buyer Name, and Active, for workflow purposes
@@ -175,6 +175,33 @@ ClassMethod CalcTimeLimit(pTimeLimit As %Integer) As %Library.TimeStamp
 	set timelimit=nowseconds+pTimeLimit                //add 180 seconds (or value of parameter)
 	set dollarH=timelimit\86400_","_(timelimit#86400)  //convert back to $hororolg
 	quit $zdatetime(dollarH,3)                         //convert back to ODBC/%Timestamp format
+}
+
+ClassMethod TestEmail()
+{
+	#dim smtp as %Net.SMTP
+	#dim auth as %Net.Authenticator
+	#dim msg as %Net.MailMessage
+
+	set smtp = ##class(%Net.SMTP).%New()
+	set auth = ##class(%Net.Authenticator).%New()
+	set msg = ##class(%Net.MailMessage).%New()
+
+	set auth.UserName = "scott@bestoffer.org"
+	set auth.Password = "bestofferdemo"
+
+	set smtp.smtpserver = "192.168.250.3"
+	set smtp.authenticator = auth
+	#; set smtp.SSLConfiguration = "iRedmailSSL"
+	set smtp.port = "25"
+
+	set msg.From = "rich.taylor@intersystems.com"
+	do msg.To.Insert("michael@mail.bestoffer.org")
+	set msg.Subject = "test message"
+	do msg.TextData.Write("This is a test message")
+
+	set sc = smtp.Send(msg)
+	do:$$$ISERR(sc) $System.Status.DisplayError(sc)
 }
 
 }

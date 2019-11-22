@@ -93,7 +93,7 @@ If you changed ports in the docker-compose.yml file reference your port in the U
 
 # .vscode/settings.json
 
-Settings file to let you immedietly code in VSCode with [VSCode ObjectScript plugin](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript))
+Settings file to let you immediatly code in VSCode with [VSCode ObjectScript plugin](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript))
 
 # .vscode/launch.json
 Config file if you want to debug with VSCode ObjectScript

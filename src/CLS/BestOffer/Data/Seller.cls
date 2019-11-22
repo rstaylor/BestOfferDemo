@@ -1,4 +1,4 @@
-Class BestOffer.Data.Seller Extends (%Persistent, %Populate)
+Class BestOffer.Data.Seller Extends (%Persistent, %Populate, %JSON.Adaptor)
 {
 
 Property Name As %String(MAXLEN = 50, POPSPEC = "Company()");

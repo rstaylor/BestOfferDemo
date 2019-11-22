@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "d377dc33-0ac5-4a20-925f-f2a54e4f59bc",
+		"name": "BestOffer API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BestOffer Open Bidding",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"item\":\"1\",\"seller\":\"1\"}"
+				},
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/bidding",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"bidding"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BestOffer New Item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"seller\":\"1\",\n\t\"Address\":{\n\t\t\"street\":\"One Memorial Dr\",\n\t\t\"city\":\"Cambridge\",\n\t\t\"state\":\"MA\",\n\t\t\"zip\":\"02142\",\n\t\t\"country\":\"USA\"\n\t},\n\t\"description\":\"Cherry Bookshelves\",\n\t\"value\":780.89,\n\t\"weight\":65\n}"
+				},
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/bidding",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"bidding"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BestOffer Item Listing",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"seller\":\"1\",\n\t\"Address\":{\n\t\t\"street\":\"One Memorial Dr\",\n\t\t\"city\":\"Cambridge\",\n\t\t\"state\":\"MA\",\n\t\t\"zip\":\"02142\",\n\t\t\"country\":\"USA\"\n\t},\n\t\"description\":\"Cherry Bookshelves\",\n\t\"value\":780.89,\n\t\"weight\":65\n}"
+				},
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/items?status=Pending",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"items"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "Pending"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "SYS",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "SuperUser",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6c2e2376-f6d7-4dcd-a346-8cd5bf2e79a6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8d623db4-25e7-40a5-913a-f573a3b2a155",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "ba37b588-203a-4c52-944f-cf66f39055a6",
+			"key": "Server",
+			"value": "localhost:62773",
+			"type": "string"
+		}
+	]
+}

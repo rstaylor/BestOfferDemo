@@ -1,4 +1,4 @@
-Class BestOffer.Data.Item Extends (%Persistent, %XML.Adaptor, %Populate)
+Class BestOffer.Data.Item Extends (%Persistent, %XML.Adaptor, %Populate, %JSON.Adaptor)
 {
 
 Index IDkey On RequestID [ Unique ];
@@ -7,7 +7,7 @@ Property Seller As BestOffer.Data.Seller;
 
 Property RequestID As %Integer(MINVAL = 100000);
 
-Property InitialDate As %Date(MAXVAL = 64390, MINVAL = 64380);
+Property InitialDate As %Date(MAXVAL = 65700, MINVAL = 64380);
 
 Property InitialTime As %Time;
 
