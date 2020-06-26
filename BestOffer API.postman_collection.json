@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "BestOffer Open Bidding",
+			"name": "Open Bidding",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -21,22 +21,38 @@
 					"raw": "{\"item\":\"1\",\"seller\":\"1\"}"
 				},
 				"url": {
-					"raw": "{{Server}}/bestoffer/api/bidding",
+					"raw": "{{Server}}/bestoffer/api/items/open",
 					"host": [
 						"{{Server}}"
 					],
 					"path": [
 						"bestoffer",
 						"api",
-						"bidding"
+						"items",
+						"open"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "BestOffer New Item",
+			"name": "New Item",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "xxx",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Michael",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -50,25 +66,41 @@
 					"raw": "{\n\t\"seller\":\"1\",\n\t\"Address\":{\n\t\t\"street\":\"One Memorial Dr\",\n\t\t\"city\":\"Cambridge\",\n\t\t\"state\":\"MA\",\n\t\t\"zip\":\"02142\",\n\t\t\"country\":\"USA\"\n\t},\n\t\"description\":\"Cherry Bookshelves\",\n\t\"value\":780.89,\n\t\"weight\":65\n}"
 				},
 				"url": {
-					"raw": "{{Server}}/bestoffer/api/bidding",
+					"raw": "{{Server}}/bestoffer/api/items/new",
 					"host": [
 						"{{Server}}"
 					],
 					"path": [
 						"bestoffer",
 						"api",
-						"bidding"
+						"items",
+						"new"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "BestOffer Item Listing",
+			"name": "Item Listing",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "scott",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "xxx",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -82,7 +114,7 @@
 					"raw": "{\n\t\"seller\":\"1\",\n\t\"Address\":{\n\t\t\"street\":\"One Memorial Dr\",\n\t\t\"city\":\"Cambridge\",\n\t\t\"state\":\"MA\",\n\t\t\"zip\":\"02142\",\n\t\t\"country\":\"USA\"\n\t},\n\t\"description\":\"Cherry Bookshelves\",\n\t\"value\":780.89,\n\t\"weight\":65\n}"
 				},
 				"url": {
-					"raw": "{{Server}}/bestoffer/api/items?status=Pending",
+					"raw": "{{Server}}/bestoffer/api/items?seller=1&status=Pending",
 					"host": [
 						"{{Server}}"
 					],
@@ -93,10 +125,203 @@
 					],
 					"query": [
 						{
+							"key": "seller",
+							"value": "1"
+						},
+						{
 							"key": "status",
 							"value": "Pending"
 						}
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bid list for user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/bids/Michael",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"bids",
+						"Michael"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make Bid",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "scott",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "xxx",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Action\":\"Bid\",\n\t\"FormValues\": {\n\t\t\"Bid Amount\":425\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/bids/11",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"bids",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make Counter Bid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c13c2af-c2dd-49dd-8ef8-1e60bbda1494",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "scott",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "xxx",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Action\":\"CounterBid\",\n\t\"FormValues\": {\n\t\t\"Counter Bid Amount\":533\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/bids/57",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"bids",
+						"57"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get sellers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/users?Type=seller&Active=1",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Type",
+							"value": "seller"
+						},
+						{
+							"key": "Active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get buyers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Server}}/bestoffer/api/users?Type=seller&Active=1",
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"bestoffer",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Type",
+							"value": "seller"
+						},
+						{
+							"key": "Active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bids for Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
 				}
 			},
 			"response": []
@@ -141,10 +366,11 @@
 	],
 	"variable": [
 		{
-			"id": "ba37b588-203a-4c52-944f-cf66f39055a6",
+			"id": "5bd5efc4-d81e-447e-b10e-78644f409ac9",
 			"key": "Server",
 			"value": "localhost:62773",
 			"type": "string"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

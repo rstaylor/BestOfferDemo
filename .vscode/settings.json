@@ -5,11 +5,11 @@
       },
     "objectscript.conn.active": true,
     "objectscript.conn.version": 3,
+    "objectscript.conn.host": "192.169.250.2",
     "objectscript.conn.ns": "BESTOFFER",
-    "objectscript.conn.username": "_SYSTEM",
-    "objectscript.conn.password": "SYS",
-    "objectscript.conn.port": 62773, 
+    "objectscript.conn.port": 52773, 
     "objectscript.export.addCategory": true,
+    "objectscript.export.category": "*",
     "workbench.editor.enablePreview": false
 
 }

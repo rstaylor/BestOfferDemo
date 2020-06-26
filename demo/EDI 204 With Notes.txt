@@ -1,0 +1,39 @@
+ISA*00* *00* *14*006922827TMO204*02*CARRIERID *050829*1025*U*00401*010100170*0*P*:~
+GS*SM*006922827TMO204*CARRIERID*20170407*1025*10100170*X*004010~
+ST*204*10100170~
+B2**SCAC**SHIPMENTID123*L*PP*L~
+B2A*49*LT~
+L11*123456*DI~
+G62*64*20170407*1*1125*ET~
+AT5*FR*EX~ 
+NTE**If picking up at one of the following DC's Roanoke, Riverside, or Groveport plea~
+NTE**se arrive @ PU with empty trailer by 1900 one business day prior to PU. Weekend~
+NTE**PU- Trailer needs to be in yard by 1900 Thursday. Yard Open 24 x 7. No Bobtail~
+NTE**Multi-stop loads, 1 load locks required with driver. Carrier cannot deliver~
+NTE**beyond the scheduled delivery date without shipper's approval. Adherence is expected~
+N1*BT*KRInnovative, LLC*93*SHIPPER CODE~
+N3*123 PEACHTREE ST~
+N4*ATLANTA*GA*30339*USA~
+N7**987654*********2B****4806*****10*8~
+S5*1*LD*119.5*L*1*PC*21.4286*E~
+G62*69*20170407*U*1700*ET~
+PLD*20~ NTE**3468072 - 5733347631~
+N1*SF*CONSUMER ELECTRONICS - DALLAS*93*PCU1T~
+N3*300 FREEDOM DR*DOCK 15~
+N4*ROANOKE*TX*762620000*USA~
+G61*SH*RAKIF/ KHALIL*TE*678-522-9163~
+OID*ORDER123~
+LAD*PCS*1~
+L5***HUB*N~ 
+AT8*G*L*119.5*1**E*21.4286~
+G61*ZZ*ZZ~
+L11*0054887858*P8~
+L11*CD2 WHITE GLOVE*DJ~
+L11*1254458785*P8~
+S5*2*UL*119.5*L*1*PC*21.4286*E~
+G62*70*20170408*X*0800*ET~
+PLD*20~
+L3*119.5*G***4500****21.4286*E*1*L**00*PL~
+SE*48*10100170~
+GE*1*10100170~
+IEA*1*010100170~

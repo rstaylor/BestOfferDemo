@@ -73,12 +73,24 @@ ClassMethod CreateWebApp(DefaultNamespace As %String) As %Status
 {
   new $Namespace
   set $Namespace = "%SYS"
-  write "Create web application ...",!
+  write "Create bestoffer web application ...",!
   set webName = "/bestoffer/api"
   set webProperties("NameSpace") = "BESTOFFER"
   set webProperties("Enabled") = 1
-  set webProperties("AutheEnabled") = "32"
+  set webProperties("AutheEnabled") = "64"
   set webProperties("DispatchClass") = "BestOffer.Util.RESTShell"
+  set status = ##class(Security.Applications).Create(webName, .webProperties)
+  write:'status ##class(%System.Status).DisplayError(status)
+  write "Web application "_webName_" was created!",!
+
+  write "Create bestofferui web application ...",!
+  set webName = "/bestofferui"
+  kill webProperties
+  set webProperties("NameSpace") = "BESTOFFER"
+  set webProperties("Enabled") = 1
+  set webProperties("AutheEnabled") = "64"
+  set webProperties("Path") = "/usr/irissys/csp/bestofferui"
+  set webProperties("CSPZENEnabled") = 1
   set status = ##class(Security.Applications).Create(webName, .webProperties)
   write:'status ##class(%System.Status).DisplayError(status)
   write "Web application "_webName_" was created!",!

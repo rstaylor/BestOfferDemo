@@ -1,16 +1,25 @@
-ARG IMAGE=store/intersystems/iris-community:2019.3.0.302.0
+#ARG IMAGE=store/intersystems/iris-community:2019.3.0.302.0
+#ARG IMAGE=store/intersystems/iris-community:2019.4.0.379.0
+ARG IMAGE=store/intersystems/iris-community:2020.2.0.204.0
 FROM $IMAGE
 
 USER root
 
+COPY --chown=${ISC_PACKAGE_IRISUSER}:${ISC_PACKAGE_MGRGROUP} ./httpd-local.conf ${ISC_PACKAGE_INSTALLDIR}/httpd/conf
+
 WORKDIR /opt/app
-RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/app
+RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/app && \
+    mkdir ${ISC_PACKAGE_INSTALLDIR}/csp/bestofferui && \ 
+    chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} ${ISC_PACKAGE_INSTALLDIR}/csp/bestofferui 
+    # && \
+    # chown ${ISC_PACKAGE_IRISUSER}:${ISC_PACKAGE_MGRGROUP} ${ISC_PACKAGE_INSTALLDIR}/httpd/conf
 
 USER irisowner
 
 COPY  ./Installer.cls ./
 COPY  ./src ./src
-#COPY --chown=irisowner ./src/dfi ./src/dfi
+COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} ./bestofferui ${ISC_PACKAGE_INSTALLDIR}/csp/bestofferui
+
 
 RUN iris start $ISC_PACKAGE_INSTANCENAME quietly && \
     /bin/echo -e \

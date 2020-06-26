@@ -3,16 +3,16 @@ services:
   iris:
     build: .
     restart: always
-    ports:
-      - 61773:51773
-      - 62773:52773
-      - 63773:53773
     volumes:
       # - ~/iris.key:/usr/irissys/mgr/iris.key
       - ./:/iris/app
+    networks: 
+      default:
+        ipv4_address: 192.169.0.4
 networks:
   default:
    ipam:
       driver: default
       config:
-      -  subnet: 192.168.250.1/24
+        - subnet: 192.169.0.0/16
+          gateway: 192.169.0.1
