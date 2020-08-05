@@ -49,12 +49,19 @@ volume mapping and adjust the X12 Inbound and X12Outbound business hosts as desi
 ## DOCKER PORT MAPPINGS
 The docker-compose.yml file defines the port numbers used to access IRIS from outside the container.
 The current setting for accessing REST or the System Management Portal is port 62773.  Adjust this
-as necessary for your environment
+as necessary for your environment.
+
+NOTE: by using the Docker network settings in the docker-compose file you do not need port mapping to
+access the System Management Portal or the REST interface.  The IP of the private network may be used.
 
 ## DOCKER NETWORK
 The docker-compose.yml defines the network to be used by the container.  Care needs to be taken that 
 this does not conflict with anything in your network environment (including any VPNs you may routinely
-join).  The current setting is for 192.168.250.0/24, adjust as needed settings.
+join).  The current setting for Subnet is 192.168.250.0/16 and the IP address of the container,
+ipv4_address, is 192.169.250.2, adjust as needed settings.
+
+If the IP address is changes also change the configuration file for the Web-based User interface. This
+can be found at bestofferui/assets/config.json within the project folder.
 
 ## run the container
 Open the terminal in this directory and run or open VSCode in this directory,

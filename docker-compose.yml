@@ -8,11 +8,11 @@ services:
       - ./:/iris/app
     networks: 
       default:
-        ipv4_address: 192.169.0.4
+        ipv4_address: 192.169.250.2
 networks:
   default:
    ipam:
       driver: default
       config:
-        - subnet: 192.169.0.0/16
-          gateway: 192.169.0.1
+        - subnet: 192.169.250.0/16
+          gateway: 192.169.250.1
