@@ -1,6 +1,8 @@
 #ARG IMAGE=store/intersystems/iris-community:2019.3.0.302.0
 #ARG IMAGE=store/intersystems/iris-community:2019.4.0.379.0
-ARG IMAGE=store/intersystems/iris-community:2020.2.0.204.0
+#ARG IMAGE=store/intersystems/iris-community:2020.2.0.204.0
+ARG IMAGE=intersystems/iris:2020.2.0.211.0
+
 FROM $IMAGE
 
 USER root
@@ -19,6 +21,7 @@ USER irisowner
 COPY  ./Installer.cls ./
 COPY  ./src ./src
 COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} ./bestofferui ${ISC_PACKAGE_INSTALLDIR}/csp/bestofferui
+COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} ./iris.key ${ISC_PACKAGE_INSTALLDIR}/mgr
 
 
 RUN iris start $ISC_PACKAGE_INSTANCENAME quietly && \

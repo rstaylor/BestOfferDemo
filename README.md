@@ -1,4 +1,6 @@
 ## BestOffer Demo
+
+I JUST CHANGED THIS BEFORE A RESTORE
 BestOffer.com is working to bring to market a brokerage solution to unite buyers and sellers, eliminating 
 the “middle man”, reducing costs, increasing transparency etc.
 The business process flow is as follows…..
@@ -104,3 +106,5 @@ Settings file to let you immediatly code in VSCode with [VSCode ObjectScript plu
 
 # .vscode/launch.json
 Config file if you want to debug with VSCode ObjectScript
+
+XXXXs

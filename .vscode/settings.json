@@ -1,15 +1,42 @@
 {
     "files.associations": {
-    
         "Dockerfile*": "dockerfile",
-      },
-    "objectscript.conn.active": true,
-    "objectscript.conn.version": 3,
-    "objectscript.conn.host": "192.169.250.2",
-    "objectscript.conn.ns": "BESTOFFER",
-    "objectscript.conn.port": 52773, 
+    },
     "objectscript.export.addCategory": true,
     "objectscript.export.category": "*",
-    "workbench.editor.enablePreview": false
+    "workbench.editor.enablePreview": false,
+    "objectscript.conn": {
+      "server": "iris",
+      "active": true,
+      "ns": "BESTOFFER"
+    },
+    "intersystems.servers": {
+      "iris": {
+        "webServer": {
+          "scheme": "http",
+          "host": "192.169.250.2",
+          "port": 52773
+        },
+        "description": "Connection to local InterSystems IRIS™ installed with default settings.",
+        "username": "superuser"
+      },
+      "cache": {
+        "webServer": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 57772
+        },
+        "description": "Connection to local InterSystems Caché® installed with default settings."
+      },
+      "ensemble": {
+        "webServer": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 57772
+        },
+        "description": "Connection to local InterSystems Ensemble® installed with default settings."
+      },
+      "/default": "iris"
+    }
 
 }
