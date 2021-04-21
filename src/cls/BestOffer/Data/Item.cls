@@ -5,9 +5,9 @@ Index IDkey On RequestID [ Unique ];
 
 Property Seller As BestOffer.Data.Seller;
 
-Property RequestID As %Integer(MINVAL = 100000);
+Property RequestID As %Integer;
 
-Property InitialDate As %Date(MAXVAL = 65700);
+Property InitialDate As %Date;
 
 Property InitialTime As %Time;
 
