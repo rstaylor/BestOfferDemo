@@ -36,8 +36,6 @@ ClassMethod GetUsers() As %Status
 
 		set Active = $Get(%request.Data("Active",1))+0
 		
-		hang 15 // testing for license consumption. Remove after test 
-		
 		set sql = ##class(%SQL.Statement).%New()
 
 		set sqlCmd = "select ID,Contact,'buyer' as Type from BestOffer_Data.Buyer"

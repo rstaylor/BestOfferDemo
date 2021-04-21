@@ -6,12 +6,11 @@
     "objectscript.export.category": "*",
     "workbench.editor.enablePreview": false,
     "objectscript.conn": {
-      "server": "iris",
+      "server": "bestoffer",
       "active": true,
-      "ns": "BESTOFFER"
-    },
+      "ns": "BESTOFFER"    },
     "intersystems.servers": {
-      "iris": {
+      "bestoffer": {
         "webServer": {
           "scheme": "http",
           "host": "192.169.250.2",
@@ -20,23 +19,7 @@
         "description": "Connection to local InterSystems IRIS™ installed with default settings.",
         "username": "superuser"
       },
-      "cache": {
-        "webServer": {
-          "scheme": "http",
-          "host": "127.0.0.1",
-          "port": 57772
-        },
-        "description": "Connection to local InterSystems Caché® installed with default settings."
-      },
-      "ensemble": {
-        "webServer": {
-          "scheme": "http",
-          "host": "127.0.0.1",
-          "port": 57772
-        },
-        "description": "Connection to local InterSystems Ensemble® installed with default settings."
-      },
-      "/default": "iris"
+      "/default": "bestoffer"
     }
 
 }

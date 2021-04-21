@@ -1,7 +1,8 @@
 #ARG IMAGE=store/intersystems/iris-community:2019.3.0.302.0
 #ARG IMAGE=store/intersystems/iris-community:2019.4.0.379.0
 #ARG IMAGE=store/intersystems/iris-community:2020.2.0.204.0
-ARG IMAGE=intersystems/iris:2020.2.0.211.0
+#ARG IMAGE=intersystems/iris:2020.2.0.211.0
+ARG IMAGE=containers.intersystems.com/intersystems/iris-community:2020.4.0.547.0
 
 FROM $IMAGE
 
