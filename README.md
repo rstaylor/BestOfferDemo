@@ -12,8 +12,15 @@ From there the buyer can bid or reject the item for sale, and if bidding, places
 worklist.  In turn the seller can accept the buyer’s bid or counterbid (placing an item back on the buyer’s worklist 
 etc.). Email notifications are sent at each step in the workflow
 
-No attempt was made to create a fancy workflow UI as the goal was always for the customer to use our APIs to retrieve 
-worklists, respond to work items, close Tasks etc.
+A representative user interface is provided for demo purposes.  This is supported by a RESTful API.
+This can be accessed at {server}/bestofferui.  To Demo: 
+1. On the Seller tab select 'Michael
+2. use 'Add Item' to create an item to bid on
+3. Go to the Seller tab and select 'Scott'.  The other seller is not fully setup intentionally to show and error
+in the message trace
+4. The seller can put in a bid or respond to a counter bid by selecting the Bidding Task
+5. Buyer can respond to bids from the Bidding Tasks on the Seller tab
+
 The prototype is functional, however the real impact was the relative complexity of the BPL and it’s integration with 
 our Workflow framework, as well as the speed at which we (myself and the prospect) put this together over a series of 
 one and two hour Webexes.
@@ -36,25 +43,14 @@ Before doing docker-compose update the parameters for email access in BestOffer.
 *************
 
 ## Configure Production
-PRODUCTION: FILE ADAPTER SETTINGS
-File adapters are configured to use the root folder of /iris/app which is configured as a volume
-in the docker-compose.yml file.  The current configuration maps this path to the Git project
-folder.  Correct this for your environment or preference.
+Configure the Email adapter setting in the production and the email credentials under interoperability
+to allow the email notifications to be processed.
 
-/iris/app/demo/in       -> X12Inbound service
-/iris/app/demo/archive  -> X12Inbound service
-/iris/app/demo/out      -> X12Outbound Operation
-
-This allows sending files and viewing output outside the container.  You can setup a separate
-volume mapping and adjust the X12 Inbound and X12Outbound business hosts as desired.
-
-## DOCKER PORT MAPPINGS
-The docker-compose.yml file defines the port numbers used to access IRIS from outside the container.
-The current setting for accessing REST or the System Management Portal is port 62773.  Adjust this
-as necessary for your environment.
-
-NOTE: by using the Docker network settings in the docker-compose file you do not need port mapping to
-access the System Management Portal or the REST interface.  The IP of the private network may be used.
+Before starting the container you may need to update the config.json file that is under the project
+folder bestoffer/assets.  This JSON structure supplies the IP address and Port to use for the REST
+calls made by the bestofferui web application.  THIS IS ONLY NECESSARY IF YOU CHANGE THE NETWORKING
+CONFIGURATION IN THE docker-compose.yml FILE OR IF USING DOCKER FOR MAC.  see the docker networking
+section below.
 
 ## DOCKER NETWORK
 The docker-compose.yml defines the network to be used by the container.  Care needs to be taken that 
@@ -64,6 +60,12 @@ ipv4_address, is 192.169.250.2, adjust as needed settings.
 
 If the IP address is changes also change the configuration file for the Web-based User interface. This
 can be found at bestofferui/assets/config.json within the project folder.
+
+### EXCEPTION FOR MAC
+Docker for MAC does not provide any ability to bridge to the Docker network.  Therefore the ONLY way to
+access the container Web interfaces (SMP, REST, demo application) if via mapped ports and the localhost
+server reference.  A mapped port of 4949 has been created for this purpose.  For example use
+http://localhost:4949/bestofferui/ to access the demo application
 
 ## run the container
 Open the terminal in this directory and run or open VSCode in this directory,
@@ -106,5 +108,3 @@ Settings file to let you immediatly code in VSCode with [VSCode ObjectScript plu
 
 # .vscode/launch.json
 Config file if you want to debug with VSCode ObjectScript
-
-XXXXs

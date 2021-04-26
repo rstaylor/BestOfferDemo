@@ -6,6 +6,12 @@ services:
     volumes:
       # - ~/iris.key:/usr/irissys/mgr/iris.key
       - ./:/iris/app
+    ports: 
+      # mapping of web server port is necessary on Mac OS due to Docker not 
+      # supporting bridge networks to the host.  Set the mapped port to 
+      # desired value.  Use localhost:mapped port to 
+      # access the SMP and demo application
+      - 4949:52773
     networks: 
       default:
         ipv4_address: 192.169.250.2
