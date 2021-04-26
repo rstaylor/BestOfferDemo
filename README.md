@@ -1,8 +1,9 @@
 ## BestOffer Demo
 
-I JUST CHANGED THIS BEFORE A RESTORE
+Demo Concept:
 BestOffer.com is working to bring to market a brokerage solution to unite buyers and sellers, eliminating 
 the “middle man”, reducing costs, increasing transparency etc.
+
 The business process flow is as follows…..
 A registered seller logs in via the browser or mobile app, defines an item which is then persisted into 
 Ensemble/IDP via a REST service call. The REST code then passes the item for sale request to a Business 
